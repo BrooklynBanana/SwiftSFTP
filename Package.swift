@@ -252,6 +252,20 @@ let libssh2CSettings: [CSetting] = [
     .define("HAVE_UNISTD_H"),
     .define("LIBSSH2_HAVE_ZLIB"),
     .define("LIBSSH2_OPENSSL"),
+    // Modified by the Swift Connection Manager fork (2026-11-16): libssh2 disables these methods by default
+    // since 1.11.2_DEV. They are compiled in again so that very old servers (e.g. OpenSSH 5.3) stay reachable.
+    // Callers restrict the offered methods per session with libssh2_session_method_pref().
+    .define("LIBSSH2_RSA_SHA1_ENABLE"),
+    .define("LIBSSH2_KEX_SHA1_ENABLE"),
+    .define("LIBSSH2_DSA_ENABLE"),
+    .define("LIBSSH2_HMAC_SHA1_ENABLE"),
+    .define("LIBSSH2_MD5_ENABLE"),
+    .define("LIBSSH2_MD5_PEM_ENABLE"),
+    .define("LIBSSH2_3DES_ENABLE"),
+    .define("LIBSSH2_HMAC_RIPEMD_ENABLE"),
+    .define("LIBSSH2_BLOWFISH_ENABLE"),
+    .define("LIBSSH2_RC4_ENABLE"),
+    .define("LIBSSH2_CAST_ENABLE"),
 ]
 
 let libssh2Target = Target.target(
